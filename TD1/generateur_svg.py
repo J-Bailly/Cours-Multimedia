@@ -21,7 +21,7 @@ dessin2 = svgwrite.Drawing('TD1/exercice_carre_trans.svg', size=(800,600))
 
 carre=[(-100,-100), (100,-100), (100,100), (-100,100)]
 
-trans=(200,200)
+trans=(150,300)
 
 carre_trans=[translater(sommet,trans) for sommet in carre]
 
@@ -61,13 +61,13 @@ dessin3.save()
 #--------------------Matrices 2D--------------------#
 
 def prodMatVect(Mat, Vect ):
-    x, y = Vect
-    ( (a11,a12), (a21, a22) ) = Mat
+       x, y = Vect
+       ((a11,a12), (a21, a22)) = Mat
 
-    x2 = a11 * x + a12 * y
-    y2 = a21 * x + a22 * y
+       x2 = a11 * x + a12 * y
+       y2 = a21 * x + a22 * y
 
-    return (x2,y2)
+       return (x2,y2)
 
 def Matrotation(angle):
      return ((cos(angle), sin(angle)), (-sin(angle), cos(angle)))
@@ -89,17 +89,31 @@ dessin4.save()
 
 #--------------------Dilatation--------------------#
 
-dessin5 = svgwrite.Drawing('TD1/exercice_carre_dilatation.svg', size=(800,600))
+def Matdilatation(coefDilatation):
+  return ((coefDilatation, 0), (0, coefDilatation))
 
-carre=[(-100,-100), (100,-100), 
-       (100,100), (-100,100)]
+def Dilatation(Vect):
+       x, y = Vect
+       ((a11,a12), (a21, a22)) = Matdilatation
+       x2 = a11 * x + a12 * y
+       y2 = a21 * x + a22 * y
 
-angle=pi/12
+       return (x2,y2)
 
-Matcarre = Matrotation(angle)
+dessin5 = svgwrite.Drawing('TD1/question3.svg', size=(800,600))
 
-carre_matrice=[translater(prodMatVect(Matcarre,sommet), trans) for sommet in carre]
+carre=[(-100,-100), (100,-100), (100,100), (-100,100)]
 
-dessin5.add(dessin5.polygon(carre_matrice, fill="#FF0000",stroke="#000000", opacity=1))
+CoefDilatation = 0.5
 
-dessin5.save()
+i = 0
+
+while(i < 6):
+
+       carre_matrice=[translater(Matdilatation(Matcarre,sommet), trans) for sommet in carre]
+
+       dessin5.add(dessin5.polygon(carre_matrice, fill="#FF0000",stroke="#000000", opacity=0.2))
+
+       dessin5.save()
+
+       i += 1
