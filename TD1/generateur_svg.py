@@ -291,74 +291,67 @@ for i in range(5):
 dessin.save()
 
 
-#--------------------3D--------------------#
-def compose(points,triangles):
-  liste_point=[]
-  colors=("blue","red","green","purple","yellow","white","coral","darkblue")
-  for i in range(0,len(triangles)//3):
-      print(triangles[3*i],triangles[3*i+1],triangles[3*i+2])
-      dessinC1.add(dessinC1.polygon((points[triangles[3*i]],points[triangles[3*i+1]],points[triangles[3*i+2]]), fill=colors[(i%(len(colors)*2))//2],  opacity=0.5,stroke='black'))
+#------------------------------------------------ 3D -------------------------------------------------------------#
 
 aux=100
 points=[[-aux, -aux, aux], #point 0 (face devant)
         [-aux, aux, aux],#point 1   (face devant)
         [aux, -aux, aux],#point 2   (face devant)
         [aux, aux, aux],#point 3    (face devant)
-        [-aux, -aux, -aux],#point 4 (face arrière)
-        [-aux, aux, -aux],#point 5 (face arrière)
-        [aux, -aux, -aux],#point 6 (face arrière)
-        [aux, aux, -aux]#.point 7 (face arrière)
+        [-aux, -aux, -aux],#point 4 (face arriÃ¨re)
+        [-aux,aux,-aux],# point 5   (face arriÃ¨re)
+        [aux,-aux,-aux],# point 6   (face arriÃ¨re)
+        [aux,aux,-aux]# point 7     (face arriÃ¨re)
         ]
-cube = [
-    0,1,3,  0,3,2,     # avant
-    4,5,7,  4,7,6,     # arrière
-    0,1,5,  0,5,4,     # gauche
-    2,3,7,  2,7,6,     # droite
-    1,3,7,  1,7,5,     # haut
-    0,2,6,  0,6,4      # bas
-]
+cube=[0,1,2,   #triangle 1 face 1 (devant)
+    1,2,3,     #triangle 2 face 1
+    4,5,6,     #triangle 1 face 2 (arriere)
+    5,6,7,     #triangle 2 face 2
+    0,5,1,
+    0,5,4,
+    6,3,7,
+    6,3,2,
+    4,2,0,
+    4,2,6,
+    1,5,7,
+    1,3,7
+    ]
 
-dessinC1 = svgwrite.Drawing('TD1/CubeQ1.svg', size=(800,600))
+
+dessin = svgwrite.Drawing('TD1/Cube.svg', size=(800,800))
+
 
 def projection(point3d):
-    return((point3d[0],point3d[1]))
+  return((point3d[0],point3d[1]))
+
+def composeCube(points, triangles):
+    colors=("blue","red","green","purple","yellow","white","coral")
+    for i in range(len(triangles)//3):
+        dessin.add(
+            dessin.polygon(
+                (points[triangles[3*i]],
+                 points[triangles[3*i+1]],
+                 points[triangles[3*i+2]]),
+                fill=colors[(i%(len(colors)*2))//2], opacity=0.5, stroke='black'
+            )
+        )
 
 points_proj = [ projection(sommet) for sommet in points ]
-compose(points_proj,triangles)
 
-dessinC1.save()
+composeCube(points_proj,cube)
+dessin.save()
 
-#--------------------3D Question 3--------------------#
+dessin = svgwrite.Drawing('TD1/CubeCentrer.svg', size=(800,800))
 
-def compose(points,triangles):
-  liste_point=[]
-  colors=("blue","red","green","purple","yellow","white","coral","darkblue")
-  for i in range(0,len(triangles)//3):
-      print(triangles[3*i],triangles[3*i+1],triangles[3*i+2])
-      dessinC3.add(dessinC3.polygon((points[triangles[3*i]],points[triangles[3*i+1]],points[triangles[3*i+2]]), fill=colors[(i%(len(colors)*2))//2],  opacity=0.5,stroke='black'))
-
-def translation(point, direction):
+def face_et_centrer(point, direction):
     x, y, z = point
     dx, dy, dz = direction
     return (x + dx, y + dy, z + dz)
 
-dessinC3 = svgwrite.Drawing('TD1/CubeQ3.svg', size=(800,600))
-
-trans = (150, 150, 0)
-
-translater = [ projection(translation(sommet, trans)) for sommet in points ]
-compose(translater,triangles)
-
-dessinC3.save()
-
-#--------------------3D Question 4--------------------#
-
-def compose(points,triangles):
-  liste_point=[]
-  colors=("blue","red","green","purple","yellow","white","coral","darkblue")
-  for i in range(0,len(triangles)//3):
-      print(triangles[3*i],triangles[3*i+1],triangles[3*i+2])
-      dessinC4.add(dessinC4.polygon((points[triangles[3*i]],points[triangles[3*i+1]],points[triangles[3*i+2]]), fill=colors[(i%(len(colors)*2))//2],  opacity=0.5,stroke='black'))
+new_points = [face_et_centrer(p,(100,100,100)) for p in points]
+points_proj = [ projection(sommet) for sommet in new_points ]
+composeCube(points_proj,cube)
+dessin.save()
 
 def prodMatVect3D(Mat, Vect ):
     x, y,z = Vect
@@ -389,53 +382,63 @@ def Matdilatation3D(coefDilatation):
                          (0, coefDilatation , 0),
                          (0, 0, coefDilatation))
 
-dessinC4 = svgwrite.Drawing('TD1/CubeQ4.svg', size=(800,600))
+def Matrotation3DY(angle):
+     return (
+            (cos(angle), 0,sin(angle)),
+            (0,1,0,),
+            (-sin(angle),0, cos(angle)))
 
-trans = (300, 300, 0)
-coefDilatation = 2
-
-translater = [ projection(translation(prodMatVect3D(Matdilatation3D(coefDilatation), sommet), trans)) for sommet in points ]
-compose(translater,triangles)
-
-dessinC4.save()
-
-#--------------------3D Question 5--------------------#
-
-def compose(points,triangles):
-  liste_point=[]
-  colors=("blue","red","green","purple","yellow","white","coral","darkblue")
-  for i in range(0,len(triangles)//3):
-      print(triangles[3*i],triangles[3*i+1],triangles[3*i+2])
-      dessinC5.add(dessinC5.polygon((points[triangles[3*i]],points[triangles[3*i+1]],points[triangles[3*i+2]]), fill=colors[i],  opacity=0.5,stroke='black'))
 
 def Matrotation3DX(angle):
      return (
-            (1, 0, 0),
-            (0, cos(angle), sin(angle)),
-            (0, -sin(angle), cos(angle)))
+            (1, 0,0),
+            (0,cos(angle),-sin(angle)),
+            (0,sin(angle), cos(angle)))
 
-def Matrotation3DY(angle):
-     return (
-            (cos(angle), 0, -sin(angle)),
-            (0,1,0),
-            (sin(angle),0, cos(angle)))
 
 def Matrotation3DZ(angle):
      return (
-            (cos(angle), -sin(angle), 0),
-            (sin(angle), cos(angle), 0),
-            (0, 0, 1))
+            (cos(angle),-sin(angle),0),
+            (sin(angle), cos(angle),0),
+            (0, 0,1))
+
+dessin = svgwrite.Drawing('TD1/rotationCube.svg', size=(800, 600))
+angle = -pi/10
+matModif = prodMatMat3D(Matrotation3DX(angle), Matrotation3DY(angle))
+new_points = [prodMatVect3D(matModif, p) for p in points]
+new_points = [face_et_centrer(p, (200, 200, 200)) for p in new_points]
+new_points = [ projection(sommet) for sommet in new_points ]
+
+composeCube(new_points, cube)
+dessin.save()
 
 
-dessinC5 = svgwrite.Drawing('TD1/CubeQ5.svg', size=(800,600))
+dessin = svgwrite.Drawing('TD1/rotationZCube.svg', size=(800, 600))
+angle = pi/10
+matModif = prodMatMat3D(Matrotation3DX(angle), Matrotation3DY(angle))
+matModif = prodMatMat3D(matModif, Matrotation3DZ(angle))
+new_points = [prodMatVect3D(matModif, p) for p in points]
+new_points = [face_et_centrer(p, (200, 200, 200)) for p in new_points]
+new_points = [ projection(sommet) for sommet in new_points ]
 
-trans = (300, 300, 0)
-coefDilatation = 1.5
-angle= -pi/12
+composeCube(new_points, cube)
+dessin.save()
 
-rotaXY = prodMatMat3D(Matrotation3DY(angle), Matrotation3DX(angle))
+dessin = svgwrite.Drawing('TD1/rotationDilatationCube.svg', size=(1000, 1000))
+angle = pi/10
 
-rotation = [ projection(translation(prodMatVect3D(rotaXY, sommet), trans)) for sommet in points ]
-compose(rotation,triangles)
-
-dessinC5.save()
+dilution = 1
+translation = (200, 200, 200)
+for i in range(1, 10):
+    matModif = prodMatMat3D(Matrotation3DX(angle), Matrotation3DY(angle))
+    matModif = prodMatMat3D(matModif, Matrotation3DZ(angle))
+    matModif = prodMatMat3D(matModif, Matdilatation3D(dilution))
+    new_points = [prodMatVect3D(matModif, p) for p in points]
+    new_points = [face_et_centrer(p, translation) for p in new_points]
+    new_points = [ projection(sommet) for sommet in new_points ]
+    composeCube(new_points, cube)
+    angle = pi/(10+i)*i
+    print(angle)
+    dilution -= 0.1
+    translation = (translation[0]+100, 200, 200)
+dessin.save()
