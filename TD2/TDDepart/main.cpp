@@ -29,6 +29,7 @@ unsigned int mvpid;
 
 // Matrices de transformation.
 glm::mat4 view;
+glm::mat4 view1;
 glm::mat4 proj;
 glm::mat4 mvp;
 
@@ -47,8 +48,9 @@ void display()
   glClear( GL_COLOR_BUFFER_BIT );
 
   // L'origine du repère est déplacée à -5 suivant l'axe z.
-  view = glm::translate( glm::mat4( 1.0f ) , glm::vec3( 0.0f, 0.0f, -5.0f ) );
-  view = glm::rotate( view, glm::radians( r ), glm::vec3( 0.0f, 0.0f, 1.0f ) );
+  view = glm::translate( glm::mat4( 1.0f ) , glm::vec3( 0.0f, -1.5f, -5.0f ) );
+  view1 = view;
+  view = glm::rotate( view, glm::radians( r ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
 
   // Calcul de la matrice mvp.
   mvp = proj * view;
@@ -62,9 +64,77 @@ void display()
 
   //----Cube2----//
   {
-    glm::mat1 model1 = glm::mat1(1.0f);
-    
-    model1 = glm::translate(model1, glm::vec3(0.0f, 1.0f, 0.0f));
+    glm::mat4 model1 = glm::mat4(1.0f);
+
+    // Déplace le cube vers le haut
+    model1 = glm::translate(model1, glm::vec3(2.0f, 0.0f, 0.0f));
+
+    // Recalcule le MVP du cube 2
+    glm::mat4 mvp2 = proj * view * model1;
+
+    // Envoie la matrice au shader
+    glUniformMatrix4fv(mvpid , 1, GL_FALSE, &mvp2[0][0]);
+
+    glBindVertexArray(vaoids[0]);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, 0 );
+  }
+
+  //----Cube3----//
+  {
+    glm::mat4 model1 = glm::mat4(1.0f);
+
+    // Déplace le cube vers le haut
+    model1 = glm::translate(model1, glm::vec3(0.0f, 4.0f, 0.0f));
+
+    // Recalcule le MVP du cube 2
+    glm::mat4 mvp2 = proj * view1 * model1;
+
+    // Envoie la matrice au shader
+    glUniformMatrix4fv(mvpid , 1, GL_FALSE, &mvp2[0][0]);
+
+    glBindVertexArray(vaoids[0]);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, 0 );
+  }
+
+  //----Cube4----//
+  {
+    glm::mat4 model1 = glm::mat4(1.0f);
+
+    // Déplace le cube vers le haut
+    model1 = glm::rotate(model1, glm::radians(r), glm::vec3(0.0f, 1.0f, 0.0f));
+    model1 = glm::translate(model1, glm::vec3(2.0f, 4.0f, 0.0f));
+    model1 = glm::scale(model1, glm::vec3(0.5f, 0.5f, 0.5f));
+    model1 = glm::rotate(model1, glm::radians(r), glm::vec3(0.0f, 2.0f, 0.0f));
+
+    // Recalcule le MVP du cube 2
+    glm::mat4 mvp2 = proj * view1 * model1;
+
+    // Envoie la matrice au shader
+    glUniformMatrix4fv(mvpid , 1, GL_FALSE, &mvp2[0][0]);
+
+    glBindVertexArray(vaoids[0]);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, 0 );
+  }
+
+  //----Cube5----//
+  {
+    glm::mat4 model1 = glm::mat4(1.0f);
+
+    // Déplace le cube vers le haut
+    model1 = glm::translate(model1, glm::vec3(0.0f, 4.0f, 0.0f));
+    model1 = glm::rotate(model1, glm::radians(r), glm::vec3(1.0f, 0.0f, 0.0f));
+    model1 = glm::scale(model1, glm::vec3(0.5f, 0.5f, 0.5f));
+    model1 = glm::translate(model1, glm::vec3(0.0f, 3.0f, 0.0f));
+    model1 = glm::rotate(model1, glm::radians(r), glm::vec3(2.0f, 0.0f, 0.0f));
+
+    // Recalcule le MVP du cube 2
+    glm::mat4 mvp2 = proj * view1 * model1;
+
+    // Envoie la matrice au shader
+    glUniformMatrix4fv(mvpid , 1, GL_FALSE, &mvp2[0][0]);
+
+    glBindVertexArray(vaoids[0]);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, 0 );
   }
   glutSwapBuffers();
 
@@ -92,7 +162,7 @@ void reshape( int w, int h )
   // Modification de la zone d'affichage OpenGL.
   glViewport(0, 0, w, h);
   // Modification de la matrice de projection à chaque redimensionnement de la fenêtre.
-  proj = glm::perspective( glm::radians(45.0f), w/static_cast< float >( h ), 0.1f, 100.0f );
+  proj = glm::perspective( glm::radians(90.0f), w/static_cast< float >( h ), 0.1f, 100.0f );
 }
 
 
