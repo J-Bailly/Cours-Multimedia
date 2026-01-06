@@ -1,18 +1,18 @@
-Start testing: Dec 01 15:03 CET
+Start testing: Dec 09 08:35 CET
 ----------------------------------------------------------
 1/1 Testing: SimpleTest
 1/1 Test: SimpleTest
 Command: "/home/iut45/Etudiants/o22300336/Bureau/Cours/multimedia/td1/TD4/b/td"
 Directory: /home/iut45/Etudiants/o22300336/Bureau/Cours/multimedia/td1/TD4/b
-"SimpleTest" start time: Dec 01 15:03 CET
+"SimpleTest" start time: Dec 09 08:35 CET
 Output:
 ----------------------------------------------------------
 <end of output>
-Test time =  38.56 sec
+Test time =  37.70 sec
 ----------------------------------------------------------
 Test Passed.
-"SimpleTest" end time: Dec 01 15:04 CET
-"SimpleTest" time elapsed: 00:00:38
+"SimpleTest" end time: Dec 09 08:35 CET
+"SimpleTest" time elapsed: 00:00:37
 ----------------------------------------------------------
 
-End testing: Dec 01 15:04 CET
+End testing: Dec 09 08:35 CET
