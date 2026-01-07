@@ -1,0 +1,19 @@
+Start testing: Jan 07 12:30 CET
+----------------------------------------------------------
+1/1 Testing: SimpleTest
+1/1 Test: SimpleTest
+Command: "/home/iut45/Etudiants/o22300336/Bureau/Cours/multimedia/td1/TD6/b/td"
+Directory: /home/iut45/Etudiants/o22300336/Bureau/Cours/multimedia/td1/TD6/b
+"SimpleTest" start time: Jan 07 12:30 CET
+Output:
+----------------------------------------------------------
+CRITICAL: Impossible d'ouvrir le Vertex Shader: /home/iut45/Etudiants/o22300336/Bureau/Cours/multimedia/td1/TD6shaders/phong.vert.glsl
+<end of output>
+Test time =   0.09 sec
+----------------------------------------------------------
+Test Failed.
+"SimpleTest" end time: Jan 07 12:30 CET
+"SimpleTest" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Jan 07 12:30 CET
