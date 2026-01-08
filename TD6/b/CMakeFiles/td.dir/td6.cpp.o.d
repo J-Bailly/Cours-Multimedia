@@ -153,8 +153,7 @@ CMakeFiles/td.dir/td6.cpp.o: \
  /usr/include/c++/13/bits/stl_uninitialized.h \
  /usr/include/c++/13/bits/stl_vector.h \
  /usr/include/c++/13/bits/stl_bvector.h \
- /usr/include/c++/13/bits/vector.tcc /usr/include/c++/13/array \
- /usr/include/c++/13/compare /usr/include/c++/13/fstream \
+ /usr/include/c++/13/bits/vector.tcc /usr/include/c++/13/fstream \
  /usr/include/c++/13/bits/codecvt.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h \
@@ -198,7 +197,6 @@ CMakeFiles/td.dir/td6.cpp.o: \
  /usr/include/GL/freeglut_ucall.h \
  /home/iut45/Etudiants/o22300336/Bureau/Cours/multimedia/td1/TD6/b/config.h \
  /home/iut45/Etudiants/o22300336/Bureau/Cours/multimedia/td1/TD6/GLError.h \
- /home/iut45/Etudiants/o22300336/Bureau/Cours/multimedia/td1/TD6/repere.h \
  /usr/include/glm/glm.hpp /usr/include/glm/detail/_fixes.hpp \
  /usr/include/glm/detail/setup.hpp /usr/include/c++/13/cassert \
  /usr/include/assert.h /usr/include/glm/simd/platform.h \
@@ -334,4 +332,6 @@ CMakeFiles/td.dir/td6.cpp.o: \
  /usr/include/glm/ext/matrix_clip_space.inl \
  /usr/include/glm/ext/matrix_transform.hpp \
  /usr/include/glm/ext/matrix_transform.inl \
- /usr/include/glm/gtc/matrix_transform.inl
+ /usr/include/glm/gtc/matrix_transform.inl \
+ /usr/include/x86_64-linux-gnu/sys/timeb.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_timeb.h

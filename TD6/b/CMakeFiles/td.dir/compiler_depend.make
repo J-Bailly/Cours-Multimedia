@@ -597,7 +597,6 @@ CMakeFiles/td.dir/repere.cpp.o: /home/iut45/Etudiants/o22300336/Bureau/Cours/mul
 CMakeFiles/td.dir/td6.cpp.o: /home/iut45/Etudiants/o22300336/Bureau/Cours/multimedia/td1/TD6/td6.cpp \
   /home/iut45/Etudiants/o22300336/Bureau/Cours/multimedia/td1/TD6/GLError.h \
   config.h \
-  /home/iut45/Etudiants/o22300336/Bureau/Cours/multimedia/td1/TD6/repere.h \
   /usr/include/GL/freeglut.h \
   /usr/include/GL/freeglut_ext.h \
   /usr/include/GL/freeglut_std.h \
@@ -611,7 +610,6 @@ CMakeFiles/td.dir/td6.cpp.o: /home/iut45/Etudiants/o22300336/Bureau/Cours/multim
   /usr/include/asm-generic/errno.h \
   /usr/include/assert.h \
   /usr/include/c++/13/algorithm \
-  /usr/include/c++/13/array \
   /usr/include/c++/13/backward/binders.h \
   /usr/include/c++/13/bit \
   /usr/include/c++/13/bits/algorithmfwd.h \
@@ -687,7 +685,6 @@ CMakeFiles/td.dir/td6.cpp.o: /home/iut45/Etudiants/o22300336/Bureau/Cours/multim
   /usr/include/c++/13/climits \
   /usr/include/c++/13/clocale \
   /usr/include/c++/13/cmath \
-  /usr/include/c++/13/compare \
   /usr/include/c++/13/cstddef \
   /usr/include/c++/13/cstdint \
   /usr/include/c++/13/cstdio \
